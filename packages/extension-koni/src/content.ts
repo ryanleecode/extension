@@ -3,10 +3,16 @@
 
 import type { Message } from '@subwallet/extension-base/types';
 
+import { register } from '@substrate/light-client-extension-helpers/content-script';
 import { TransportRequestMessage } from '@subwallet/extension-base/background/types';
 import { MESSAGE_ORIGIN_CONTENT, MESSAGE_ORIGIN_PAGE, PORT_CONTENT } from '@subwallet/extension-base/defaults';
 import { getId } from '@subwallet/extension-base/utils/getId';
 import { addNotificationPopUp } from '@subwallet/extension-koni/helper/PageNotification';
+
+import { CHANNEL_ID } from './constants';
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+register(CHANNEL_ID);
 
 const handleRedirectPhishing: { id: string, resolve?: (value: (boolean | PromiseLike<boolean>)) => void, reject?: (e: Error) => void } = {
   id: 'redirect-phishing-' + getId()

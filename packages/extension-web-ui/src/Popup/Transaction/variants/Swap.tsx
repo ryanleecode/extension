@@ -1412,6 +1412,7 @@ const Component = () => {
                     className={'-d-column'}
                     label={t('Swap route')}
                   >
+                    <></>
                   </MetaInfo.Default>
                   <SwapRoute swapRoute={currentQuote.route} />
                   <div className={'__minimum-received'}>

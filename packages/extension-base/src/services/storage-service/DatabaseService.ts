@@ -90,18 +90,22 @@ export default class DatabaseService {
     return this.stores.balance.table.filter((obj) => addresses.includes(obj.address)).toArray();
   }
 
-  async updateBalanceStore (item: BalanceItem) {
+  async updateBalanceStore (item: BalanceItem): Promise<unknown> {
     if (item.state === APIItemState.READY) {
       return this.stores.balance.upsert({ ...item } as IBalance);
     }
+
+    return undefined;
   }
 
-  async updateBulkBalanceStore (items: BalanceItem[]) {
+  async updateBulkBalanceStore (items: BalanceItem[]): Promise<unknown> {
     const filtered = items.filter((item) => item.state !== APIItemState.PENDING);
 
     if (filtered.length) {
       return this.stores.balance.bulkUpsert(filtered);
     }
+
+    return undefined;
   }
 
   async removeFromBalanceStore (assets: string[]) {
@@ -118,10 +122,12 @@ export default class DatabaseService {
   }
 
   // Staking
-  async updateStaking (chain: string, address: string, item: StakingItem) {
+  async updateStaking (chain: string, address: string, item: StakingItem): Promise<unknown> {
     if (item.state === APIItemState.READY) {
       return this.stores.staking.upsert(item);
     }
+
+    return undefined;
   }
 
   async getStakings (addresses: string[], chains?: string[]) {

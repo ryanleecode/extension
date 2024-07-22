@@ -4803,8 +4803,6 @@ export default class KoniExtension {
 
       case 'pri(transfer.getMaxTransferable)':
         return this.getMaxTransferable(request as RequestMaxTransferable);
-      case 'pri(transfer.subscribeMaxTransferable)':
-        return this.getMaxTransferable(request as RequestMaxTransferable);
       case 'pri(freeBalance.get)':
         return this.getAddressTransferableBalance(request as RequestFreeBalance);
       case 'pri(freeBalance.subscribe)':

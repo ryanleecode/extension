@@ -144,7 +144,7 @@ function Component (props: Props): React.ReactElement<Props> {
         }
 
         {
-          earningEstimated > 0 && earningEstimated !== '' && <MetaInfo.Number
+          +earningEstimated > 0 && earningEstimated !== '' && <MetaInfo.Number
             label={t('Estimated APY')}
             suffix={'%'}
             value={earningEstimated}

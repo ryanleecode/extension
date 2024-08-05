@@ -15,7 +15,7 @@ import type { KeypairType } from '@polkadot/util-crypto/types';
 
 import { PORT_EXTENSION } from '@polkadot/extension-base/defaults';
 import { getId } from '@polkadot/extension-base/utils/getId';
-import { ensurePortConnection } from '@polkadot/extension-base/utils/portUtils';
+import { ensurePortConnection, setupPort } from '@polkadot/extension-base/utils/portUtils';
 import { metadataExpand } from '@polkadot/extension-chains';
 
 import allChains from './util/chains.js';
@@ -67,6 +67,12 @@ const portConfig = {
   onPortMessageHandler,
   portName: PORT_EXTENSION
 };
+
+port = setupPort(
+  portConfig.portName,
+  portConfig.onPortMessageHandler,
+  portConfig.onPortDisconnectHandler
+);
 
 function sendMessage<TMessageType extends MessageTypesWithNullRequest>(message: TMessageType): Promise<ResponseTypes[TMessageType]>;
 function sendMessage<TMessageType extends MessageTypesWithNoSubscriptions>(message: TMessageType, request: RequestTypes[TMessageType]): Promise<ResponseTypes[TMessageType]>;
